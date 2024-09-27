@@ -1,66 +1,26 @@
-## Foundry
+You will find on this repo the following files :
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+- `src/Lottery.sol` : The contract we will hack.
+- `src/Attacker.sol` : A contract written to attack the Lottery contract.
 
-Foundry consists of:
+- `test/Attacker.t.sol` : A test file to test Attacker contract.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- `script/Deploy.s.sol` : A script to deploy both contracts.
+- `script/Attacker.s.sol` : A script to run attack from Attacker on Lottery contract.
 
-## Documentation
+## Configure the workspace
 
-https://book.getfoundry.sh/
+Please copy the `env.example` file, and rename it `.env`.
+Then provide the `PRIVATE_KEY` of an account that holds more than 0.5 ETH on Sepolia.
 
-## Usage
+## Run the test files
 
-### Build
+Run the following command : `forge test`.
 
-```shell
-$ forge build
-```
+## Run the attack
 
-### Test
+Deploy command : `forge script script/Deploy.s.sol --rpc-url https://rpc.sepolia.org --broadcast`.
 
-```shell
-$ forge test
-```
+Attack command : `forge script script/Attack.s.sol --rpc-url https://rpc.sepolia.org --broadcast`.
 
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Withdraw command : `forge script script/Withdraw.s.sol --rpc-url https://rpc.sepolia.org --broadcast`.
